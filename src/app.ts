@@ -2,6 +2,9 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './docs/swagger';
+
 
 const app: Application = express();
 
@@ -14,6 +17,7 @@ app.use('/api/users', userRoutes);
 app.get('/health', (req: Request, res: Response) =>
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() })
 );
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // 404 handler
 app.use('*', (req: Request, res: Response) =>
@@ -25,5 +29,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
+
 
 export default app;
