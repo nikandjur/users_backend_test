@@ -51,7 +51,7 @@ npm start
 После запуска приложения 
 документация доступна по адресу:
 http://localhost:<порт>/api-docs
-🔗 [Swagger UI](https://localhost:3000/api-docs) 
+🔗 [Swagger UI](http://localhost:3000/api-docs) 
 
 
 
